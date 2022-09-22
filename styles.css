@@ -1,0 +1,68 @@
+*{
+    margin: 0;
+    height: 100%;
+}
+.topbar{
+    width: 100%; 
+    /* below takes care of height of top bar with respect to screen size */
+    height: 20vh;
+    background-color: grey;
+    position:fixed;
+    top: 0px;
+}
+/* purpose of flex1 is to have the main-content and sidebar side by side */
+.flex-1{
+    display: flex;
+    flex-direction: row;
+    margin-top: 20vh;
+}
+.card{
+    width: 250px;
+    height: 300px;
+    background-color: rgb(144, 230, 144);
+}
+
+.sidebar{
+    height: 100%;
+    width: 10vw;
+    background-color: aqua;
+}
+.main-content{
+    background-color: rgb(237, 237, 170);
+    
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    
+}
+.box1{
+    background-color: rgb(136, 136, 235);
+    width: 30%;
+    height: 100%;
+    text-align: center;
+    vertical-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+.box2{
+    background-color:  rgb(144, 230, 144);
+    width: 70%;
+    height: 100%;
+    text-align: center;
+    vertical-align: center;
+    display: flex;
+    flex-direction: column;
+}
+.table{
+    border: black solid;
+    margin: 1rem;
+}
+.b1{
+    width: 50%;
+    height: 10%;
+    margin-top:1rem;
+    margin-bottom:1rem;
+}
