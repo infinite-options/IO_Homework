@@ -1,0 +1,39 @@
+.carousel-container {
+  position: relative;
+  overflow: hidden;
+  max-width: 800px; /* Adjust as needed */
+  margin: 20px auto;
+}
+
+.carousel-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.5s ease-in-out; /* Add transition property */
+}
+
+.control-btn {
+  position: absolute;
+  top: 50%;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  padding: 8px;
+  cursor: pointer;
+  font-size: 1.5rem;
+}
+
+.prev {
+  left: 10px;
+}
+
+.next {
+  right: 10px;
+}
+
+.carousel.next .carousel-image {
+  transform: translateX(100%);
+}
+
+.carousel.prev .carousel-image {
+  transform: translateX(-100%);
+}
