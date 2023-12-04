@@ -1,29 +1,18 @@
-import "./App.css";
-import Button from "./Components/Button/Button";
-import Header from "./Components/Header/Header";
-import Dropdown from "./Components/Dropdown/Dropdown";
-import Accordion from "./Components/Accordion/Accordion";
-import Table from "./Components/Table/Table";
-import Carousel from "./Components/Carousel/Carousel";
-import Fetchfile from "./Components/EndpointCalls/Fetchfile";
-import Axiosfile from "./Components/EndpointCalls/Axiosfile";
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Table from "./Components/Pages/Table";
+import Home from "./Components/Pages/Home";
 
 function App() {
   return (
-    <div className="App">
-      <Header />
-      <br></br>
-      <Button />
-      <br></br>
-      <Dropdown />
-      <br></br>
-      <Table />
-      <Accordion />
-      <br></br>
-      <Carousel />
-      <br></br>
-      <Fetchfile />
-      <br></br>
+    <div>
+      <BrowserRouter>
+        <Routes>
+          <Route index element={<Home />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/table" element={<Table />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
