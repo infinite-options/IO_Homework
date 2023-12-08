@@ -10,13 +10,14 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:testing_web/models/matching_algo.dart';
 import 'models/auth_model.dart';
 import 'models/test_algo_model.dart';
+import 'models/auth_model.dart';
+import 'models/matching_algo.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
-
   // originally resided in google_services.json
   // From Firebase Project Settings
 
@@ -47,15 +48,39 @@ class FirebaseDataDisplay extends StatefulWidget {
 
 class _FirebaseDataDisplayState extends State<FirebaseDataDisplay> {
   //Intiate instance
-  final auth_model = new AuthModel();
-  final test_algo_model = new functionTest();
-  String? userDataDisplay;
+  final auth_model = AuthModel();
+  final test_algo_model = UserService();
+  // final matching_algo = finalMatchingAlgo(
+  //                   'Rqb32VGpm2QQkV6Ldzs1fxj3Dc43', // Replace with an actual user ID
+  //                   18,  // Min Age
+  //                   30,  // Max Age
+  //                   6,  // Height
+  //                   ['Reading', 'Traveling'], // Interests
+  //                   GeoPoint(37.7749, -122.4194), // Location
+  //                   100, // Search Radius
+  //                   0,   // Kids
+  //                   'Straight', // Sexuality
+  //                   ['OpenToAll'] 
+  // );
+  //String? userDataDisplay;
 
   @override
   void initState() {
     super.initState();
-    auth_model.signInAndFetchData(); 
-    functionTest().testprint();
+    signInAndFetchData();
+  }
+
+  void signInAndFetchData() async {
+    User? user = await auth_model.signIn("test-ab@gmail.com", "12345678");
+    if (user != null) {
+      var userData = await test_algo_model.fetchUserData(user);
+      if (userData != null) {
+        print("User Data: $userData");
+        // Call your matching algorithm here
+        // var matchingResults = await matching_algo.finalMatchingAlgo(); // Update with actual function
+        // print("Matching Results: $matchingResults");
+      }
+    }
   }
 
   @override
@@ -65,7 +90,7 @@ class _FirebaseDataDisplayState extends State<FirebaseDataDisplay> {
         title: Text('AuthModel algorithm testing'),
       ),
       body: Center(
-        child: userDataDisplay == null? CircularProgressIndicator() : Text(userDataDisplay!),
+        child: Text("userDataDisplay!"), //need to make changes here to display end result
       ),
     );
   }
