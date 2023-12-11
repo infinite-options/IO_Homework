@@ -50,18 +50,6 @@ class _FirebaseDataDisplayState extends State<FirebaseDataDisplay> {
   //Intiate instance
   final auth_model = AuthModel();
   final test_algo_model = UserService();
-  // final matching_algo = finalMatchingAlgo(
-  //                   'Rqb32VGpm2QQkV6Ldzs1fxj3Dc43', // Replace with an actual user ID
-  //                   18,  // Min Age
-  //                   30,  // Max Age
-  //                   6,  // Height
-  //                   ['Reading', 'Traveling'], // Interests
-  //                   GeoPoint(37.7749, -122.4194), // Location
-  //                   100, // Search Radius
-  //                   0,   // Kids
-  //                   'Straight', // Sexuality
-  //                   ['OpenToAll'] 
-  // );
   //String? userDataDisplay;
 
   @override
@@ -77,8 +65,19 @@ class _FirebaseDataDisplayState extends State<FirebaseDataDisplay> {
       if (userData != null) {
         print("User Data: $userData");
         // Call your matching algorithm here
-        // var matchingResults = await matching_algo.finalMatchingAlgo(); // Update with actual function
-        // print("Matching Results: $matchingResults");
+        var matchingResults = await finalMatchingAlgo(
+                    'Rqb32VGpm2QQkV6Ldzs1fxj3Dc43', // Replace with an actual user ID
+                    18,  // Min Age
+                    30,  // Max Age
+                    6,  // Height
+                    ['Reading', 'Traveling'], // Interests
+                    GeoPoint(37.7749, -122.4194), // Location
+                    100, // Search Radius
+                    0,   // Kids
+                    'Straight', // Sexuality
+                    ['OpenToAll'] 
+        ); // Update with actual function
+        print("Matching Results: $matchingResults");
       }
     }
   }

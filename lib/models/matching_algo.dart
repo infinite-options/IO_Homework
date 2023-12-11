@@ -44,7 +44,7 @@ Future<List<UsersRecord>> finalMatchingAlgo(
   // Now recordsList contains all the user references excluding the authenticated user
 // Print each UsersRecord to the terminal
 for (var userRecord in docs) {
-    print('User: ${userRecord.toString()}'); // Modify this line to format the output as per your need
+    print('User: ${userRecord.uid}'); // Modify this line to format the output as per your need
 }
 
   // Apply the matching algorithm to filter the list
