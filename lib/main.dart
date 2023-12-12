@@ -71,8 +71,8 @@ class _FirebaseDataDisplayState extends State<FirebaseDataDisplay> {
                     50,  // Max Age
                     60,  // Height
                     ['Baking'], // Interests
-                    //GeoPoint(40.6892, -74.0445), // Location
-                    //1000, // Search Radius
+                    GeoPoint(40.6892, -74.0445), // Location
+                    3000, // Search Radius
                     2,   // Kids
                     'Straight', // Sexuality
                     ['Straight'] 

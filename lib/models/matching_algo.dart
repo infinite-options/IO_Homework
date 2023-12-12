@@ -22,8 +22,8 @@ Future<List<UsersRecord>> finalMatchingAlgo(
     int preferMaxAge,
     int preferHeight,
     List<String> authUserInterests,
-    //GeoPoint authUserLocation,
-    //int searchRadius,
+    GeoPoint authUserLocation,
+    int searchRadius,
     int authKids,
     String sexuality,
     List<String> openTo
@@ -52,8 +52,8 @@ Future<List<UsersRecord>> finalMatchingAlgo(
       preferMaxAge,
       preferHeight,
       authUserInterests,
-      //authUserLocation,
-      //searchRadius,
+      authUserLocation,
+      searchRadius,
       authKids, //prefered number of kids
       sexuality,
       openTo
@@ -68,8 +68,8 @@ List<UsersRecord> getUsersThatMatch(
     int prefer_max_age,
     int prefer_height,
     List<String> authUserInterests,
-    //GeoPoint authUserLocation,
-    //int searchRadius,
+    GeoPoint authUserLocation,
+    int searchRadius,
     int authKids, //prefered number of kids
     String sexuality,
     List<String> openTo
@@ -109,27 +109,27 @@ List<UsersRecord> getUsersThatMatch(
 
   //-------------------------------------------------------------------------------------------------------------------
   // distance
-  // while (!matched) {
-  //   userData.removeWhere((doc) =>
-  //       // checkDistance is a function with two inputs and calculateDistance is called within the function
-  //       !(checkDistance(
-  //           searchRadius,
-  //           calculateDistance(authUserLocation, doc.location)
-  //               .round()
-  //               .toInt())));
+  while (!matched) {
+    userData.removeWhere((doc) =>
+        // checkDistance is a function with two inputs and calculateDistance is called within the function
+        !(checkDistance(
+            searchRadius,
+            calculateDistance(authUserLocation, doc.location)
+                .round()
+                .toInt())));
 
-  //   if (userData.isEmpty) {
-  //     matched = false;
-  //     userData = List.from(backUpData);
-  //     searchRadius = searchRadius * 2;
-  //   } else {
-  //     matched = true;
-  //     print('After searchRadius user count: ${userData.length}');
-  //   }
-  // }
+    if (userData.isEmpty) {
+      matched = false;
+      userData = List.from(backUpData);
+      searchRadius = searchRadius * 2;
+    } else {
+      matched = true;
+      print('After searchRadius user count: ${userData.length}');
+    }
+  }
 
-  // matched = false;
-  // backUpData = List.from(userData);
+  matched = false;
+  backUpData = List.from(userData);
   // print('Intial user count: ${userData.length}');
 
 //----------------------------------------------------------------------------------------------------------------
@@ -201,7 +201,7 @@ List<UsersRecord> getUsersThatMatch(
   //-------------------------------------------------------------------------------------------------------------
 
   for (var user in userData) {
-  print('Matched User: ${user.uid}, Age: ${user.age}, Height: ${user.height}, Interests: ${user.interests}, SP: ${user.sexuality}, Kids: ${user.kids}');
+  print('Matched User: ${user.uid}, Age: ${user.age}, Height: ${user.height}, Interests: ${user.interests}, SP: ${user.sexuality}, Kids: ${user.kids}, Lattitude: ${user.location.latitude}, Longitude:  ${user.location.longitude}');
 }
   return userData;
 }
@@ -224,6 +224,7 @@ double calculateDistance(GeoPoint point1, GeoPoint point2) {
   double c = 2 * atan2(sqrt(a), sqrt(1 - a));
 
   double distance = earthRadius * c;
+  print("Distance $distance");
   return distance;
 }
 
