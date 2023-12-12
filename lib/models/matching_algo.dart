@@ -22,11 +22,12 @@ Future<List<UsersRecord>> finalMatchingAlgo(
     int preferMaxAge,
     int preferHeight,
     List<String> authUserInterests,
-    GeoPoint authUserLocation,
-    int searchRadius,
+    //GeoPoint authUserLocation,
+    //int searchRadius,
     int authKids,
     String sexuality,
-    List<String> openTo) async {
+    List<String> openTo
+    ) async {
   // This is where we are getting all the data of the users that we will match
   // Get a reference to the Firestore database
   final firestore = FirebaseFirestore.instance;
@@ -43,10 +44,6 @@ Future<List<UsersRecord>> finalMatchingAlgo(
   List<UsersRecord> docs = recordsList.where((usersRecord) => usersRecord.uid != authUid).toList();
   // Now recordsList contains all the user references excluding the authenticated user
 // Print each UsersRecord to the terminal
-for (var userRecord in docs) {
-    print('User: ${userRecord.uid}'); // Modify this line to format the output as per your need
-}
-
   // Apply the matching algorithm to filter the list
   return getUsersThatMatch(
       docs,
@@ -55,11 +52,12 @@ for (var userRecord in docs) {
       preferMaxAge,
       preferHeight,
       authUserInterests,
-      authUserLocation,
-      searchRadius,
+      //authUserLocation,
+      //searchRadius,
       authKids, //prefered number of kids
       sexuality,
-      openTo);
+      openTo
+      );
 }
 
 // declaration of all variables:  Return type followed by function inputs
@@ -70,13 +68,15 @@ List<UsersRecord> getUsersThatMatch(
     int prefer_max_age,
     int prefer_height,
     List<String> authUserInterests,
-    GeoPoint authUserLocation,
-    int searchRadius,
+    //GeoPoint authUserLocation,
+    //int searchRadius,
     int authKids, //prefered number of kids
     String sexuality,
-    List<String> openTo)
+    List<String> openTo
+    )
 
 // code starts here
+
 
 {
   if (userData.isEmpty) {
@@ -104,30 +104,33 @@ List<UsersRecord> getUsersThatMatch(
     userData = List.from(backUpData);
   } else {
     backUpData = List.from(userData);
+    print('After SP user count: ${userData.length}');
   }
 
   //-------------------------------------------------------------------------------------------------------------------
   // distance
-  while (!matched) {
-    userData.removeWhere((doc) =>
-        // checkDistance is a function with two inputs and calculateDistance is called within the function
-        !(checkDistance(
-            searchRadius,
-            calculateDistance(authUserLocation, doc.location)
-                .round()
-                .toInt())));
+  // while (!matched) {
+  //   userData.removeWhere((doc) =>
+  //       // checkDistance is a function with two inputs and calculateDistance is called within the function
+  //       !(checkDistance(
+  //           searchRadius,
+  //           calculateDistance(authUserLocation, doc.location)
+  //               .round()
+  //               .toInt())));
 
-    if (userData.isEmpty) {
-      matched = false;
-      userData = List.from(backUpData);
-      searchRadius = searchRadius * 2;
-    } else {
-      matched = true;
-    }
-  }
+  //   if (userData.isEmpty) {
+  //     matched = false;
+  //     userData = List.from(backUpData);
+  //     searchRadius = searchRadius * 2;
+  //   } else {
+  //     matched = true;
+  //     print('After searchRadius user count: ${userData.length}');
+  //   }
+  // }
 
-  matched = false;
-  backUpData = List.from(userData);
+  // matched = false;
+  // backUpData = List.from(userData);
+  // print('Intial user count: ${userData.length}');
 
 //----------------------------------------------------------------------------------------------------------------
   //height
@@ -146,6 +149,7 @@ List<UsersRecord> getUsersThatMatch(
 
   matched = false;
   backUpData = List.from(userData);
+  print('After height user count: ${userData.length}');
 
 //---------------------------------------------------------------------------------------------------
   //Age
@@ -165,18 +169,22 @@ List<UsersRecord> getUsersThatMatch(
 
   matched = false;
   backUpData = List.from(userData);
+  print('After Age user count: ${userData.length}');
+
+
 
 //------------------------------------------------------------------------------------------------------------
-  //Interests
+//   //Interests //Not checking for empty
   userData.removeWhere(
       (doc) => !(checkInterests(authUserInterests, doc.interests)));
 
   if (userData.isEmpty) {
     userData = List.from(backUpData);
+    print('After Interests user count: ${userData.length}');
   }
 
-//--------------------------------------------------------------------------------------------------------------------
-  //Kids
+// //--------------------------------------------------------------------------------------------------------------------
+//   //Kids
   while (!matched) {
     userData.removeWhere((doc) => !(checkKids(authKids, parseKids(doc.kids))));
 
@@ -186,11 +194,15 @@ List<UsersRecord> getUsersThatMatch(
       authKids = authKids + 1;
     } else {
       matched = true;
+      print('After Kids user count: ${userData.length}');
     }
   }
 
   //-------------------------------------------------------------------------------------------------------------
 
+  for (var user in userData) {
+  print('Matched User: ${user.uid}, Age: ${user.age}, Height: ${user.height}, Interests: ${user.interests}, SP: ${user.sexuality}, Kids: ${user.kids}');
+}
   return userData;
 }
 
@@ -274,12 +286,19 @@ int convertHeightToInches(String height) {
   }
 }
 
+// Change this please List1 = User , List 2 = Matching to other users
 bool checkInterests(List<String> list1, List<String> list2) {
+  if (list2.isEmpty){
+    return true;
+  }
+  //print(list1);
   for (String element in list1) {
     if (list2.contains(element)) {
       return true;
     }
   }
+  //print("HEREEEEE-------");
+  //print(list2);
   return false;
 }
 

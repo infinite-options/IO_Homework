@@ -68,14 +68,14 @@ class _FirebaseDataDisplayState extends State<FirebaseDataDisplay> {
         var matchingResults = await finalMatchingAlgo(
                     'Rqb32VGpm2QQkV6Ldzs1fxj3Dc43', // Replace with an actual user ID
                     18,  // Min Age
-                    30,  // Max Age
-                    6,  // Height
-                    ['Reading', 'Traveling'], // Interests
-                    GeoPoint(37.7749, -122.4194), // Location
-                    100, // Search Radius
-                    0,   // Kids
+                    50,  // Max Age
+                    60,  // Height
+                    ['Baking'], // Interests
+                    //GeoPoint(40.6892, -74.0445), // Location
+                    //1000, // Search Radius
+                    2,   // Kids
                     'Straight', // Sexuality
-                    ['OpenToAll'] 
+                    ['Straight'] 
         ); // Update with actual function
         print("Matching Results: $matchingResults");
       }
