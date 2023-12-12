@@ -10,7 +10,8 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:testing_web/models/matching_algo.dart';
+// import 'package:testing_web/models/matching_algo.dart';
+// import 'package:matching_algorithm/models/matching_algo.dart';
 import 'models/auth_model.dart';
 import 'models/test_algo_model.dart';
 import 'models/auth_model.dart';
@@ -66,7 +67,8 @@ class _FirebaseDataDisplayState extends State<FirebaseDataDisplay> {
         print("User Data: $userData");
         // Call your matching algorithm here
         var matchingResults = await finalMatchingAlgo(
-                    'Rqb32VGpm2QQkV6Ldzs1fxj3Dc43', // Replace with an actual user ID
+                    // 'Rqb32VGpm2QQkV6Ldzs1fxj3Dc43', // Replace with an actual user ID
+                    user.uid, // Replace with an actual user ID
                     18,  // Min Age
                     50,  // Max Age
                     60,  // Height
