@@ -18,13 +18,16 @@ import 'dart:math';
 //Name of Custom Action and Variable declaration
 Future<List<UsersRecord>> finalMatchingAlgo(
     String authUid,
+    int age,
     int preferMinAge,
     int preferMaxAge,
+    int height,
     int preferHeight,
     List<String> authUserInterests,
     GeoPoint authUserLocation,
     int searchRadius,
     int authKids,
+    int prefer_kids,
     String sexuality,
     List<String> openTo
     ) async {
@@ -48,8 +51,10 @@ Future<List<UsersRecord>> finalMatchingAlgo(
   return getUsersThatMatch(
       docs,
       authUid,
+      age,
       preferMinAge,
       preferMaxAge,
+      height,
       preferHeight,
       authUserInterests,
       authUserLocation,
@@ -64,8 +69,10 @@ Future<List<UsersRecord>> finalMatchingAlgo(
 List<UsersRecord> getUsersThatMatch(
     List<UsersRecord> userData,
     String authUid,
+    int age,
     int prefer_min_age,
     int prefer_max_age,
+    int height,
     int prefer_height,
     List<String> authUserInterests,
     GeoPoint authUserLocation,
@@ -76,7 +83,6 @@ List<UsersRecord> getUsersThatMatch(
     )
 
 // code starts here
-
 
 {
   if (userData.isEmpty) {
@@ -137,7 +143,7 @@ List<UsersRecord> getUsersThatMatch(
   while (!matched) {
     userData.removeWhere((doc) =>
         !(checkHeight(prefer_height, convertHeightToInches(doc.height))));
-
+    //print("Preffered height of the user: $prefer_height");
     if (userData.isEmpty) {
       matched = false;
       userData = List.from(backUpData);
@@ -146,6 +152,11 @@ List<UsersRecord> getUsersThatMatch(
       matched = true;
     }
   }
+  // if(userData.isNotEmpty){
+  //   userData.removeWhere((doc) =>
+  //       !(checkHeight(doc.prefer_height, height)));
+  // }
+  // if(userData.isEmpty){matched=false;}
 
   matched = false;
   backUpData = List.from(userData);
@@ -156,7 +167,12 @@ List<UsersRecord> getUsersThatMatch(
   while (!matched) {
     userData.removeWhere(
         (doc) => !(checkAge(prefer_min_age, prefer_max_age, doc.age)));
-
+    print("Age check");
+    
+    //do this loop seperately
+    // userData.removeWhere(
+    //     (doc) => !(checkAge(doc.prefer_min_age, doc.prefer_max_age, age)));
+    // print("Reverse Age check");
     if (userData.isEmpty) {
       matched = false;
       userData = List.from(backUpData);
@@ -167,7 +183,12 @@ List<UsersRecord> getUsersThatMatch(
     }
   }
 
-  matched = false;
+  // if(userData.isNotEmpty){
+  //   userData.removeWhere(
+  //       (doc) => !(checkAge(doc.prefer_min_age, doc.prefer_max_age, age)));
+  // }
+
+  // matched = false;
   backUpData = List.from(userData);
   print('After Age user count: ${userData.length}');
 
@@ -202,9 +223,100 @@ List<UsersRecord> getUsersThatMatch(
 
   for (var user in userData) {
   print('Matched User: ${user.uid}, Age: ${user.age}, Height: ${user.height}, Interests: ${user.interests}, SP: ${user.sexuality}, Kids: ${user.kids}, Lattitude: ${user.location.latitude}, Longitude:  ${user.location.longitude}');
-}
+  }
+  //--------------------------------------------------
+  //reverse check begins here
+  //--------------------------------
+  // reverse sexual preference
+  // userData.removeWhere((doc) =>
+  //     !(checkSexualPreference(openTo, sexuality)) ||
+  //     openTo.isEmpty);
+  // // userData.removeWhere((doc) =>
+  // //     !(checkSexualPreference(openTo, doc.sexuality)) ||
+  // //     openTo.isEmpty);
+
+  // if (userData.isEmpty) {
+  //   userData = List.from(backUpData);
+  // } else {
+  //   backUpData = List.from(userData);
+  //   print('After reverse check SP user count: ${userData.length}');
+  // }
+
+  //-------------------------------------------------------------------------------------------------------------------
+
+//--------------------- 
+// reverse height
+         userData.removeWhere((doc) =>
+          !(checkHeight(doc.prefer_height_min, height)));
+
+  matched = false;
+  backUpData = List.from(userData);
+  print('After reverse check, height user count: ${userData.length}');
+
+//---------------------------------------------------------------------------------------------------
+  //reverse Age
+  userData.removeWhere(
+         (doc) => !(checkAge(doc.prefer_age_min, doc.prefer_age_max, age)));
+
+
+   matched = false;
+   backUpData = List.from(userData);
+   print('After reverse check, Age user count: ${userData.length}');
+
+  // //--------------------------------------------------------------------------------------------------------------------
+// Reverse Kids
+  userData.removeWhere((doc) => !(checkKids(authKids,doc.prefer_kids)));
+
+   matched = false;
+   backUpData = List.from(userData);
+   print('After reverse check, Kids user count: ${userData.length}');
+
+  // while (!matched) {
+  //   userData.removeWhere((doc) => !(checkKids(parseKids(doc.kids),authKids)));
+
+  //   if (userData.isEmpty) {
+  //     matched = false;
+  //     userData = List.from(backUpData);
+  //     authKids = authKids + 1;
+  //   } else {
+  //     matched = true;
+  //     print('After reverse check, Kids user count: ${userData.length}');
+  //   }
+  // }
+  //-------------------
+  // // reverse distance
+  // 
+    userData.removeWhere((doc) =>
+        // checkDistance is a function with two inputs and calculateDistance is called within the function
+        !(checkDistance(
+            doc.prefer_distance,
+            calculateDistance(authUserLocation, doc.location)
+                .round()
+                .toInt())));
+  matched = false;
+  backUpData = List.from(userData);
+  print('After reverse check, distance user count: ${userData.length}');
+  //   if (userData.isEmpty) {
+  //     matched = false;
+  //     userData = List.from(backUpData);
+  //     searchRadius = searchRadius * 2;
+  //   } else {
+  //     matched = true;
+  //     print('After searchRadius user count: ${userData.length}');
+  //   }
+  // }
+
+  // matched = false;
+  // backUpData = List.from(userData);
+  //-------------------------------------------------------------------------------------------------------------
+
+  for (var user in userData) {
+  print('Matched User after reverse check: ${user.uid}, Age: ${user.age}, Height: ${user.height}, Interests: ${user.interests}, SP: ${user.sexuality}, Kids: ${user.kids}, Lattitude: ${user.location.latitude}, Longitude:  ${user.location.longitude}');
+  }
+  //------------------------------
   return userData;
 }
+
 
 // Start of Functions
 
@@ -230,8 +342,10 @@ double calculateDistance(GeoPoint point1, GeoPoint point2) {
 
 bool checkDistance(int r, int d) {
   if (d <= r) {
+    print("radius= $r, distance= $d");
     return true;
   } else {
+    print("radius= $r, distance= $d");
     return false;
   }
 }
@@ -245,16 +359,20 @@ bool checkAge(int start, int end, int userAge) {
     start = 18;
   }
   if (start < userAge && userAge < end) {
+    print("start= $start, end= $end , userAge= $userAge");
     return true;
   } else {
+    print("start= $start, end= $end , userAge= $userAge");
     return false;
   }
 }
 
 bool checkHeight(int height1, int height2) {
   if (height1 <= height2) {
+    print("height1= $height1 , height2= $height2");
     return true;
   } else {
+    print("height1= $height1, height2= $height2");
     return false;
   }
 }
@@ -273,7 +391,7 @@ int convertHeightToInches(String height) {
     int inches = int.parse(parts[1].replaceAll('in', ''));
 
     int totalInches = feet * 12 + inches;
-
+    //print(totalInches);
     return totalInches;
   } else {
     List<String> parts = height.split(' ');
@@ -282,6 +400,7 @@ int convertHeightToInches(String height) {
     int inches = int.parse(parts[1].replaceAll('in', ''));
 
     int totalInches = feet * 12 + inches;
+    //print(totalInches);
 
     return totalInches;
   }
@@ -305,8 +424,10 @@ bool checkInterests(List<String> list1, List<String> list2) {
 
 bool checkKids(int kids1, int kids2) {
   if (kids1 >= kids2) {
+    print("kids1= $kids1, kids2= $kids2");
     return true;
   } else {
+    print("kids1= $kids1, kids2= $kids2");
     return false;
   }
 }
