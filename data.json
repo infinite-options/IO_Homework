@@ -1,0 +1,19 @@
+{
+    "stacks": [
+      ["red", "violet", "blue", "pink"],
+      ["aqua", "sky", "yellow", "aqua"],
+      ["white", "brown", "green", "red"],
+      ["orange", "pink", "sky", "sky"],
+      ["yellow", "brown", "purple", "aqua"],
+      ["pink", "green", "pink", "orange"],
+      ["white", "yellow", "green", "violet"],
+      ["blue", "blue", "yellow", "orange"],
+      ["purple", "white", "purple", "blue"],
+      ["sky", "violet", "brown", "green"],
+      ["red", "red", "brown", "purple"],
+      ["aqua", "white", "violet", "orange"]
+    ],
+    "num_stacks": 14
+  }
+  
+  

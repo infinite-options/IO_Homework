@@ -1,6 +1,10 @@
 import random 
 from collections import Counter
 import copy
+import json
+
+f = open('data.json')
+data=json.load(f)
 
 
 def checkColors(colors):
@@ -177,19 +181,56 @@ def prioritize_columns(stacks, valid_moves):
     valid_moves.extend(moves_to_move)
 
 
+def createStacks(data):
+    for i in range(data["num_stacks"]-2):
+        stacks[i]=data["stacks"][i]
+    
+def runAlg(stacks):
+    move_number=0
+    positions=[]    
+    prev_moves=[]
+    prev_colors=[]
+    invalid=False
+    while(checkWinner(stacks)==False):
+        index=0
+        valid_moves=getValidMoves(stacks)
+        # print("Valid moves:", valid_moves)
+        while not valid_moves:
+            prev_move = prev_moves.pop()
+            prev_colors.pop()
+            undoMove(stacks, prev_move, move_number)
+            move_number+=1
+            valid_moves=getValidMoves(stacks)
+        prioritize_columns(stacks, valid_moves)
+        #check if the valid move will be a position that is repeated, if it is then go to next valid move, if there are no more valid moves, then it is invalid
+        while(invalid==False and repeatedPosition(stacks,positions,valid_moves[index])==True):
+            index+=1
+            if index>=len(valid_moves):
+                invalid=True
+        #if there are no valid moves that are not repeated, then pop the prev move
+        if invalid==True:
+            prev_move = prev_moves.pop()
+            prev_colors.pop()
+            undoMove(stacks, prev_move, move_number)
+            move_number+=1
+            invalid=False
+        #if there is a valid move, then move the color to the new stack
+        else:
+            move=valid_moves[index]
+            prev_colors.append(stacks[move[0]][-1])
+            moveColor(stacks, move[0], move[1], move_number)
+            prev_moves.append(move)
+            move_number+=1
+            positions.append(copy.deepcopy(stacks))
+    for i in range(len(prev_moves)):
+        print("move_number:", i+1, "color:", prev_colors[i], "source", prev_moves[i][0]+1, "destination:", prev_moves[i][1]+1)
 
-
-stacks = [[] for _ in range(14)]
-
-# colors = ["yellow","blue","red","green","purple","black","white","pink","orange"] * 4
-# random.shuffle(colors)
-
-# for i in range(len(stacks)-2):
-#     for j in range(4):
-#         if(len(colors)>0):
-#             stacks[i].append(colors.pop())
-
-
+stacks = [[] for _ in range(data["num_stacks"])]
+createStacks(data)         
+checkInitial(stacks)
+runAlg(stacks)
+print("FINAL CONFIGURATION:")
+printColors(stacks)
 
 
 #prev actual example(works)
@@ -240,18 +281,18 @@ stacks = [[] for _ in range(14)]
 # stacks[1]=["blue", "yellow", "blue", "yellow"]
 # stacks[2]=["red", "blue", "yellow", "red"]
 
-stacks[0]=["red", "violet", "blue", "pink"]
-stacks[1]=["aqua","sky", "yellow", "aqua"]
-stacks[2]=["white", "brown", "green", "red"]
-stacks[3]=["orange", "pink", "sky", "sky"]
-stacks[4]=["yellow", "brown", "purple", "aqua"]
-stacks[5]=["pink", "green", "pink", "orange"]
-stacks[6]=["white", "yellow", "green", "violet"]
-stacks[7]=["blue", "blue", "yellow", "orange"]
-stacks[8]=["purple", "white", "purple", "blue"]
-stacks[9]=["sky", "violet", "brown", "green"]
-stacks[10]=["red", "red", "brown", "purple"]
-stacks[11]=["aqua", "white", "violet", "orange"]
+# stacks[0]=["red", "violet", "blue", "pink"]
+# stacks[1]=["aqua","sky", "yellow", "aqua"]
+# stacks[2]=["white", "brown", "green", "red"]
+# stacks[3]=["orange", "pink", "sky", "sky"]
+# stacks[4]=["yellow", "brown", "purple", "aqua"]
+# stacks[5]=["pink", "green", "pink", "orange"]
+# stacks[6]=["white", "yellow", "green", "violet"]
+# stacks[7]=["blue", "blue", "yellow", "orange"]
+# stacks[8]=["purple", "white", "purple", "blue"]
+# stacks[9]=["sky", "violet", "brown", "green"]
+# stacks[10]=["red", "red", "brown", "purple"]
+# stacks[11]=["aqua", "white", "violet", "orange"]
 
 # stacks[0]=["yellow", "red", "orange", "sky"]
 # stacks[1]=["green", "pink", "violet", "purple"]
@@ -272,51 +313,3 @@ stacks[11]=["aqua", "white", "violet", "orange"]
 # stacks[6]=["red", "yellow", "pink", "orange"]
 # stacks[7]=["yellow", "purple", "violet", "purple"]
 # stacks[8]=["yellow", "blue", "red", "purple"]
-
-
-
-def bruteForce(stacks):
-    move_number=0
-    positions=[]    
-    prev_moves=[]
-    prev_colors=[]
-    invalid=False
-    while(checkWinner(stacks)==False):
-        index=0
-        valid_moves=getValidMoves(stacks)
-        # print("Valid moves:", valid_moves)
-        while not valid_moves:
-            prev_move = prev_moves.pop()
-            prev_colors.pop()
-            undoMove(stacks, prev_move, move_number)
-            move_number+=1
-            valid_moves=getValidMoves(stacks)
-        prioritize_columns(stacks, valid_moves)
-        #check if the valid move will be a position that is repeated, if it is then go to next valid move, if there are no more valid moves, then it is invalid
-        while(invalid==False and repeatedPosition(stacks,positions,valid_moves[index])==True):
-            index+=1
-            if index>=len(valid_moves):
-                invalid=True
-        #if there are no valid moves that are not repeated, then pop the prev move
-        if invalid==True:
-            prev_move = prev_moves.pop()
-            prev_colors.pop()
-            undoMove(stacks, prev_move, move_number)
-            move_number+=1
-            invalid=False
-        #if there is a valid move, then move the color to the new stack
-        else:
-            move=valid_moves[index]
-            prev_colors.append(stacks[move[0]][-1])
-            moveColor(stacks, move[0], move[1], move_number)
-            prev_moves.append(move)
-            move_number+=1
-            positions.append(copy.deepcopy(stacks))
-    for i in range(len(prev_moves)):
-        print("move_number:", i+1, "color:", prev_colors[i], "source", prev_moves[i][0]+1, "destination:", prev_moves[i][1]+1)
-
-                    
-checkInitial(stacks)
-bruteForce(stacks)
-print("FINAL CONFIGURATION:")
-printColors(stacks)

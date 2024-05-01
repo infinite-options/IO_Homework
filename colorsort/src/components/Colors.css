@@ -1,0 +1,7 @@
+.color {
+    width:10%;
+}
+
+.color:hover {
+    border-style:solid;
+}

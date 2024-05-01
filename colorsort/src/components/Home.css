@@ -1,0 +1,8 @@
+#stacks {
+    display:flex;
+    padding:10px;
+}
+
+#currentColor {
+    width:10%;
+}
