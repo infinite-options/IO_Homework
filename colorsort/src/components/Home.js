@@ -20,8 +20,11 @@ const Home = () => {
     const createColumns = (numColumns) => {
         const newColumns = [];
         const newStacks=[...stacks]
-        while (newStacks.length < numColumns) {
+        while (newStacks.length < numColumns-2) {
             newStacks.push(['','','',''])
+        }
+        while (numColumns-2 > newStacks.length) {
+            newStacks.pop()
         }
         setStacks(newStacks)
         for(let i = 0; i < numColumns-2; i++) {
