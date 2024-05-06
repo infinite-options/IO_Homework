@@ -7,7 +7,7 @@
     align-items:center;
 }
 
-.circle1,.circle2,.circle3,.circle4 {
+.circle {
     display: flex;
     width: 30px;
     height: 30px;
