@@ -19,18 +19,18 @@ const Home = () => {
 
     const createColumns = (numColumns) => {
         const newColumns = [];
-        const newStacks = [];
+        const newStacks=[...stacks]
+        while (newStacks.length < numColumns) {
+            newStacks.push(['','','',''])
+        }
+        setStacks(newStacks)
         for(let i = 0; i < numColumns-2; i++) {
-            newColumns.push(<Column         currentColor={currColor}/>)
-            newStacks.push([])
+            newColumns.push(<Column index={i} currentColor={currColor} stacks={stacks}/>)
         }
         for(let i = 0; i < 2; i++) {
-            newColumns.push(<EmptyColumn />)
-            newStacks.push([])
+            newColumns.push(<EmptyColumn index={i + numColumns -2} stacks={stacks}/>)
         }
         setColumns(newColumns)
-        setStacks(newStacks)
-        console.log(newStacks)
     }
 
     const createColors = (numColumns) => {

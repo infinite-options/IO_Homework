@@ -1,5 +1,6 @@
 import './Colors.css'
 const Colors = (props) => {
+
     const handleClick = () => {
         props.setCurrColor(props.color)
     }
