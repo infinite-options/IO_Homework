@@ -7,12 +7,23 @@
     align-items:center;
 }
 
-.circle {
+.circle1,.circle2,.circle3,.circle4 {
     display: flex;
     width: 30px;
     height: 30px;
     background-color: white;
     border-style:solid;
     border-radius: 50%;
+    padding:10px;
+  }
+
+.emptyCircle {
+    display: flex;
+    width: 30px;
+    height: 30px;
+    background-color: white;
+    border-style:solid;
+    border-radius: 50%;
+    border-color:white;
     padding:10px;
   }

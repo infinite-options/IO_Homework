@@ -1,7 +1,15 @@
 .color {
-    width:10%;
+    width: 60px;
+    height:60px;
+    border-style:solid;
+    border-radius:30px;
+    margin-right:10px;
+    border-color:gray;
+    margin-top:10px;
 }
 
 .color:hover {
     border-style:solid;
+    border-color:black; 
+    cursor:pointer;
 }

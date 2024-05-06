@@ -4,7 +4,7 @@ const Colors = (props) => {
         props.setCurrColor(props.color)
     }
     return (
-        <button className="color" style={{backgroundColor: props.color}} onClick={handleClick}>{props.color}</button>
+        <button className="color" style={{backgroundColor: props.color}} onClick={handleClick}></button>
     );
 }
  
