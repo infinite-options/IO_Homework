@@ -1,10 +1,10 @@
-import random 
-from collections import Counter
+from collections import Counter;
 import copy
 import json
 
 f = open('data.json')
 data=json.load(f)
+
 
 
 def checkColors(colors):
@@ -225,6 +225,8 @@ def runAlg(stacks):
     for i in range(len(prev_moves)):
         print("move_number:", i+1, "color:", prev_colors[i], "source", prev_moves[i][0]+1, "destination:", prev_moves[i][1]+1)
 
+
+
 stacks = [[] for _ in range(data["num_stacks"])]
 createStacks(data)         
 checkInitial(stacks)
@@ -232,84 +234,3 @@ runAlg(stacks)
 print("FINAL CONFIGURATION:")
 printColors(stacks)
 
-
-#prev actual example(works)
-# stacks[0]=["blue", "green", "orange", "yellow"]
-# stacks[1]=["red", "orange", "orange", "teal"]
-# stacks[2]=["green", "purple", "red", "yellow"]
-# stacks[3]=["orange", "yellow", "blue", "teal"]
-# stacks[4]=["teal", "green", "purple", "teal"]
-# stacks[5]=["green", "red", "blue", "purple"]
-# stacks[6]=["purple", "yellow", "blue", "red"]
-
-#prev actual example(works)
-# stacks[0]=["blue", "green", "blue", "teal"]
-# stacks[1]=["green", "green", "orange", "teal"]
-# stacks[2]=["red", "red", "purple", "red"]
-# stacks[3]=["teal", "yellow", "green", "red"]
-# stacks[4]=["blue", "orange", "yellow", "purple"]
-# stacks[5]=["purple", "blue", "yellow", "yellow"]
-# stacks[6]=["purple", "teal", "orange", "orange"]
-
-#prev actual example(works)
-# stacks[0]=["blue", "green", "orange", "orange"]
-# stacks[1]=["red", "blue", "green", "blue"]
-# stacks[2]=["blue", "red", "yellow", "orange"]
-# stacks[3]=["red", "orange", "yellow", "green"]
-# stacks[4]=["yellow", "red", "yellow", "green"]
-
-# prev actual example(works)
-# stacks[0]=["yellow", "orange", "orange", "orange"]
-# stacks[1]=["red", "yellow", "green", "orange"]
-# stacks[2]=["green", "red", "yellow", "red"]
-# stacks[3]=["blue", "green", "red", "green"]
-# stacks[4]=["blue", "blue", "blue", "yellow"]
-
-# prev actual example
-# stacks[0]=["green", "white", "red", "green"]
-# stacks[1]=["purple", "black", "purple", "purple"]
-# stacks[2]=["blue", "orange", "yellow", "pink"]
-# stacks[3]=["green", "red", "yellow", "white"]
-# stacks[4]=["orange", "blue", "purple", "black"]
-# stacks[5]=["red", "green", "pink", "white"]
-# stacks[6]=["black", "pink", "orange", "orange"]
-# stacks[7]=["pink", "white", "red", "blue"]
-# stacks[8]=["yellow", "black", "yellow", "blue"]
-
-# simple stack for dev(works)
-# stacks[0]=["blue", "yellow", "red", "red"]
-# stacks[1]=["blue", "yellow", "blue", "yellow"]
-# stacks[2]=["red", "blue", "yellow", "red"]
-
-# stacks[0]=["red", "violet", "blue", "pink"]
-# stacks[1]=["aqua","sky", "yellow", "aqua"]
-# stacks[2]=["white", "brown", "green", "red"]
-# stacks[3]=["orange", "pink", "sky", "sky"]
-# stacks[4]=["yellow", "brown", "purple", "aqua"]
-# stacks[5]=["pink", "green", "pink", "orange"]
-# stacks[6]=["white", "yellow", "green", "violet"]
-# stacks[7]=["blue", "blue", "yellow", "orange"]
-# stacks[8]=["purple", "white", "purple", "blue"]
-# stacks[9]=["sky", "violet", "brown", "green"]
-# stacks[10]=["red", "red", "brown", "purple"]
-# stacks[11]=["aqua", "white", "violet", "orange"]
-
-# stacks[0]=["yellow", "red", "orange", "sky"]
-# stacks[1]=["green", "pink", "violet", "purple"]
-# stacks[2]=["sky", "violet", "orange", "green"]
-# stacks[3]=["purple", "red", "red", "orange"]
-# stacks[4]=["yellow", "red", "pink", "yellow"]
-# stacks[5]=["green", "blue", "pink", "pink"]
-# stacks[6]=["purple", "sky", "blue", "violet"]
-# stacks[7]=["blue", "yellow", "sky", "green"]
-# stacks[8]=["violet", "blue", "purple", "orange"]
-
-# stacks[0]=["violet", "pink", "orange", "red"]
-# stacks[1]=["yellow", "green", "green", "green"]
-# stacks[2]=["sky", "orange", "pink", "orange"]
-# stacks[3]=["blue", "sky", "red", "violet"]
-# stacks[4]=["violet", "sky", "pink", "blue"]
-# stacks[5]=["blue", "sky","purple", "green"]
-# stacks[6]=["red", "yellow", "pink", "orange"]
-# stacks[7]=["yellow", "purple", "violet", "purple"]
-# stacks[8]=["yellow", "blue", "red", "purple"]

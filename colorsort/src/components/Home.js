@@ -3,6 +3,9 @@ import Colors from './Colors'
 import Column from './Column'
 import EmptyColumn from './EmptyColumn'
 import './Home.css'
+import axios from 'axios'
+import Solution from './Solution'
+
 
 
 const Home = () => {
@@ -12,10 +15,18 @@ const Home = () => {
     const [colorsShown, setColorsShown] = useState([])
     const [currColor, setCurrColor] = useState("")
     const [stacks, setStacks] = useState([])
+    const [solution, setSolution] = useState([])
 
     const handleChange = (event) => {
         setNumColumns(event.target.value);
+        console.log(stacks)
       };
+    
+    const getSolution = () => {
+        axios.post('https://b0pt945eyk.execute-api.us-west-1.amazonaws.com/dev/api/v2/runAlgorithm',{"stacks":stacks,"num_stacks":parseInt(numColumns)}).then(response => {
+            setSolution(response.data.solutiion.Solution)
+        })
+    }
 
     const createColumns = (numColumns) => {
         const newColumns = [];
@@ -66,7 +77,8 @@ const Home = () => {
             <div id="stacks">
                 {columns}
             </div>
-            <button>Run</button>
+            <button onClick={()=>getSolution()}>Run</button>
+            <Solution solution={solution} />
         </div>
     );
 }
