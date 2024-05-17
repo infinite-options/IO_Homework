@@ -1,19 +1,2 @@
-{
-    "stacks": [
-      ["red", "violet", "blue", "pink"],
-      ["aqua", "sky", "yellow", "aqua"],
-      ["white", "brown", "green", "red"],
-      ["orange", "pink", "sky", "sky"],
-      ["yellow", "brown", "purple", "aqua"],
-      ["pink", "green", "pink", "orange"],
-      ["white", "yellow", "green", "violet"],
-      ["blue", "blue", "yellow", "orange"],
-      ["purple", "white", "purple", "blue"],
-      ["sky", "violet", "brown", "green"],
-      ["red", "red", "brown", "purple"],
-      ["aqua", "white", "violet", "orange"]
-    ],
-    "num_stacks": 14
-  }
-  
-  
+
+{"stacks":[["Orange","SkyBlue","Purple","Blue"],["Aquamarine","HotPink","Gray","Red"],["Yellow","SkyBlue","Red","Red"],["Yellow","HotPink","Pink","Blue"],["Aquamarine","Orange","Red","Brown"],["Yellow","Pink","SkyBlue","Pink"],["Purple","HotPink","Green","Green"],["SkyBlue","Gray","Aquamarine","Blue"],["Yellow","Brown","Green","Aquamarine"],["Orange","Blue","Purple","Pink"],["Orange","HotPink","Green","Gray"],["Purple","Gray","Brown","Brown"]],"num_stacks":14}
