@@ -1,0 +1,91 @@
+@media (width <= 380px) {
+    
+}
+.Header{
+    width: 100%;
+    background-color: white;
+    /* min-width: 1440px; */
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    min-height: 149px;
+    
+}
+
+.Header>.Header  {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    display: flex;
+    flex-direction: right;
+    /* background-color: red; */
+}
+
+.Header>.Header  >.Pages{
+    /* display: inline-block; */
+    /* background-color: pink; */
+    text-decoration: none;
+    margin: 0;
+    width: 50%;
+
+}
+.Header>.Header  >.Grid{
+    /* display: inline-block; */
+    background-color: pink;
+    text-decoration: none;
+    margin: 0;
+    min-width: 450px;
+
+}
+
+.Header>.Header  >.Left{
+    /* background-color: red; */
+    width: 25%;
+    text-align: center;
+    margin: auto;
+}
+
+.Header>.Header  >.Pages>li{
+    /* background-color: yellow; */
+    display: inline-block;
+    /* margin-right: 100px; */
+
+}
+
+.Header>.Header  >.GridPages{
+    font-family: "Nunito", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    margin-top: 0;
+    margin-bottom: 0;
+    text-decoration: none;
+}
+
+.Header>.Header  >.GridPages>.Grid{
+    padding: 0;
+}
+
+.Header>.Header  >.Right{
+    width: 25%;
+    text-align: center;
+    /* background-color: blue; */
+    display: inline-block;
+    margin: auto;
+
+}
+
+.Header>.Header  >.Right>.OrangeButton>button{
+    display: inline;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.Header-Button{
+    width: 100%;
+    background-color: pink;
+}
+
+.BottomPages{
+    border-top:solid;
+}

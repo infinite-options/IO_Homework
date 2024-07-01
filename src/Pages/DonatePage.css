@@ -1,0 +1,65 @@
+.Donors >.Gray {
+    background-color: #F5F5F5;
+    
+    
+}
+
+.Donors >.Gray >.Grid{
+    margin: auto;
+}
+
+.Donors >.Content>.Section  >.Section{
+    background-color: #FEF3EF;
+    width: 30%;
+    min-height: 520px;
+    display: inline-block;
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgba(222, 87, 65, 0.10)
+    
+}
+
+.Donors >.Content>ul{
+    text-align: left;
+}
+
+.Donation{
+    background-image: url("../Assets/DonateContactBG.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    /* min-width: 1440px; */
+    min-height: 1187px;
+    color: white;
+}
+
+.Visions>.Section{
+    background-color: #FEF3EF;
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgba(222, 87, 65, 0.10);
+    /* max-width: 350px; */
+    /* margin-bottom: 20px; */
+}
+
+.Visions>.VisionsIcons{
+    max-width: 350px;
+    color: #132F37;
+
+}
+
+.Visions .Bottom >.Section{
+    background-color: none;
+}
+
+.Visions>.Section>.Title{
+    margin-bottom: 5px;
+}
+
+.Visions>.Section>.Title>h1{
+    /* background-color: pink; */
+    margin-bottom: 5px;
+}
+
+.VisionsIcons{
+    color: #132F37;
+}
