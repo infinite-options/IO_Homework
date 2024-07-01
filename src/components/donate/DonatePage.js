@@ -3,6 +3,7 @@ import Navbar from "../navbar/Navbar";
 import Vision from "./Vision";
 import Privileges from "./Privileges";
 import MakeDonate from "./MakeDonate";
+import Footer from "../footer/Footer";
 
 const DonatePage = () => {
     return (
@@ -46,6 +47,7 @@ const DonatePage = () => {
                 </Box>
             </Box>
             <MakeDonate />
+            <Footer />
         </Box>
     );
 }

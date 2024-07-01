@@ -5,6 +5,7 @@ import Returns from './Returns';
 import Quote from './Quote';
 import { Box, Grid, Typography } from '@mui/material';
 import Form from '../Form';
+import Footer from '../footer/Footer';
 
 const Invest = () => {
     return (
@@ -17,13 +18,13 @@ const Invest = () => {
                     </Typography>
                 </Grid>
                 <Grid item xs={12} sm={4} sx={{marginTop:'50px'}}>
-                    <Benefits image="Icon.svg" header="One global login" text="Skip the login nightmare for all your different accounts, instead, see everything from one login." />
+                    <Benefits image="global.png" header="One global login" text="Skip the login nightmare for all your different accounts, instead, see everything from one login." />
                 </Grid>
                 <Grid item xs={12} sm={4} sx={{marginTop:'50px'}}>
-                    <Benefits image="Icon.svg" header="Real-time link" text="Go from delayed and inaccurate information to one, real time dashboard." />
+                    <Benefits image="link.png" header="Real-time link" text="Go from delayed and inaccurate information to one, real time dashboard." />
                 </Grid>
                 <Grid item xs={12} sm={4} sx={{marginTop:'50px'}}>
-                    <Benefits image="Icon.svg" header="Reporting, solved" text="Easily create beautiful, custom reports on your balances, cash-flows and transactions" />
+                    <Benefits image="reporting.png" header="Reporting, solved" text="Easily create beautiful, custom reports on your balances, cash-flows and transactions" />
                 </Grid>
             </Grid>
             <Returns />
@@ -32,6 +33,7 @@ const Invest = () => {
             <Typography sx={{fontSize:"24px", mb:"50px", fontWeight:"500"}}>Need Assistance With Designing Or Planning The Shed Of Your Dreams? Fill Out This Form And One Of Our Experets Will Be In Touch With You Shortly To Set Up A Complimentary Phone Consultation</Typography>
                 <Form />
             </Box>
+            <Footer />
         </div>
     );
 }

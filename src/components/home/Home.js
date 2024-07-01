@@ -4,9 +4,9 @@ import StartBuild from './StartBuild.js'
 import Donate from './Donate.js'
 import Invest from './Invest.js'
 import Video from './Video.js'
-import Bottom from '../bottom/Bottom.js'
 import Form from '../Form.js'
 import { Box, Grid } from '@mui/material'
+import Footer from '../footer/Footer.js'
 
 const Home = () => {
     return (
@@ -31,7 +31,7 @@ const Home = () => {
                 </Box>
             </Grid>
             <Video />
-            {/* <Bottom /> */}
+            <Footer />
         </div>
     );
 }

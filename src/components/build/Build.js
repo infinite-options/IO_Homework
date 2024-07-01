@@ -2,9 +2,9 @@ import Navbar from "../navbar/Navbar";
 import Reasons from "./Reasons";
 import Estimate from "./Estimate";
 import Contact from "./Contact";
-import Bottom from "../bottom/Bottom";
 import Form from "../Form";
 import { Box, Typography, Grid } from "@mui/material";
+import Footer from "../footer/Footer";
 
 const Build = () => {
     return (
@@ -30,7 +30,7 @@ const Build = () => {
                     <Form />
                 </Box>
             </Grid>
-            <Bottom />
+            <Footer />
         </div>
     );
 }

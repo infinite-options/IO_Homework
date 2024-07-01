@@ -153,3 +153,9 @@ label {
 input[type="checkbox"] {
     transform:scale(3);
 }
+
+.reason {
+    box-shadow:5px 15px 20px rgba(0,0,0,.1);
+    padding:20px;
+    border-radius:5px;
+}
