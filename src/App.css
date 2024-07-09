@@ -1,142 +1,23 @@
 .App {
   text-align: center;
-  font-size: 26px;
-
-  font-family: "Nunito", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;
 }
 
-h1{
-  font-size: 40px;
+h2 {
+  padding: 0;
   margin: 0;
-  color: #132F37;
-  margin-bottom: 20px;
-  width: 100%;
 }
 
-p{
-  font-size: 18px;
-  /* margin: 0; */
-}
-
-ul{
-  list-style-type: none;
-  font-size: 26px;
-}
-li{
-  list-style-image: url('Assets/Checkmark.svg');
-  vertical-align: center;
-  font-weight: 700;
-  margin-top: 30px;
-}
-
-Link{
-  text-decoration: none;
-}
-
-Grid{
-  text-decoration: none;
-}
-
-.Content{
-  display: block;
-  /* padding: 50px; */
-  /* background-color: pink; */
-  justify-content: space-evenly;
-  margin: 50px;
-}
-
-.Container{
-  padding: 50px;
-  /* min-width: 1440px; */
-  /* width: 100% */
-  
-}
-
-.Left{
-  text-align: left;
-}
-
-.Right{
-  text-align: left;
-}
-
-.Name{
-  font-weight: bold;
-  color: #F4511E;
-}
-
-/* style={{ width: '100%', height: 'auto', objectFit: 'contain' }} */
-/* style={{ width: '100%', height: 'auto', objectFit: 'contain', maxWidth: '100%' }} */
-
-.Top{
-  display: flex;
-  background-image: linear-gradient(230deg, 
-  rgba(0,0,0,0.01), rgba(0,0,0,0.51)),url("./Assets/etienne-beauregard-riverin-B0aCvAVSX8E-unsplash.png");
-  background-repeat: no-repeat;
-  /* background-size: 100vw 100vh; */
-  width: '100%';
-  max-width: '100%';
-  /* height: 'auto'; */
-  justify-content: center;
-  /* max-width: 100%; */
-  background-size: cover;
-  background-position: center;
-  height: auto;
-  object-fit: 'contain';
-  /* object-fit: fill; */
-  min-height: 650px;
-  /* min-height: 100px; */
-  /* max-height: 650px; */
-  /* max-width: 100%; */
-  /* width: 100%; */
-  padding: auto;
-}
-
-.Top>.Image{
-  /* height: 100%; */
-}
-
-.Top>.Container{
-  
-  color: white;
-  vertical-align: center;
-  height: 50%;
-  margin: auto;
-}
-.Top>.Container>h1{
-  color: white;
-}
-
-.Image{
-  color: white;
-}
-
-/* .Image h1{
-  color: white;   
-} */
-
-.Person>p{
-  font-size: 16px;
+h3 {
+  color: #F2F2F2;
+  font-size: 14px;
+  padding: 0px;
   margin: 0px;
-  min-width: 183px;
 }
 
-.Square-Icon{
-  display: block;
-  justify-content: center;
-  border-style: none;
-  max-width: auto;
-  padding: 10px;
-  text-align: center;
-  align-items: center;
-  border-radius: 5px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-
+.ServiceSelect {
+  color: #160449;
 }
 
-.WithinImage{
-  color: white;
+.ServiceNote {
+  color: #A52A2A;
 }
