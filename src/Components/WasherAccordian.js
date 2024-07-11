@@ -5,11 +5,20 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Button from '@mui/material/Button';
 import WeekdayButton from './WeekdayButton';
-import LaundryIcon from '../Assets/LaundryIcon.svg'
+import LaundryIcon from '../Assets/DefaultLaundryIcon.svg'
 import { Grid, Stack, Box } from '@mui/material';
-import SelectWeekday from './SelectWeekday';
+import WeekdayBox from './WeekdayBox';
 import AvailableButton from './AvailableButton';
+import BookingTabContext from './BookingTabContext';
+
+
+import React from 'react';
 function WasherAccordian() {
+    const {accordianType, defineAccordianType} = React.useContext(BookingTabContext);
+    // const {washerBooked, defineWasherBooked} = React.useContext(WasherContext);
+    // define the washer object
+
+
     const currentDate = new Date();
     const currWeek = [];
     // console.log('currentDate', currentDate);
@@ -22,7 +31,9 @@ function WasherAccordian() {
     //   console.log('tempDate: ', tempDate);
     }
     return (
-        <Accordion style={{backgroundColor: '#79CBF9', borderRadius: '10px'}}>
+        <Accordion style={{backgroundColor: '#79CBF9', borderRadius: '10px'}} onChange={() => {
+            defineAccordianType('Washer');
+        }}>
             <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel1-content"
@@ -40,9 +51,9 @@ function WasherAccordian() {
             </AccordionSummary>
             <AccordionDetails>
                 <Stack spacing={2}>
-                    <SelectWeekday></SelectWeekday>
-                    <SelectWeekday></SelectWeekday>
-                    <SelectWeekday></SelectWeekday>
+                    <WeekdayBox icon={LaundryIcon}></WeekdayBox>
+                    <WeekdayBox icon={LaundryIcon}></WeekdayBox>
+                    <WeekdayBox icon={LaundryIcon}></WeekdayBox>                    
                 </Stack>
                 
             </AccordionDetails>

@@ -1,6 +1,9 @@
 import React from 'react';
 import { Box, Button, Grid, Container, Stack } from "@mui/material";
 import ScheduleButton from './ScheduleButton';
+import TimeButton from './TimeButton';
+import TimeContext from './TimeContext';
+import WeekdaySelectContext from './WeekdaySelectContext';
 function TimesGrid() {
     // var currentDate = new window.Date(Year, Month-1, Date);
     var currentDate = new window.Date(); // setting up a default time
@@ -9,14 +12,17 @@ function TimesGrid() {
     // set currentDate time to 12:00
     // push onto an array 44 times
     
-    // const [selectState, setSelectState] = React.useState(false);
-    // function handleSelectState () {
-        
-    // }
+    // from TimesGrid
+    const {selectedDay, selectedWeekday} = React.useContext(WeekdaySelectContext);
+    const [selectedTime, setSelectedTime] = React.useState('');
 
+    function defineSelectedTime (time) {
+        setSelectedTime(time);
+        // passed into timeButton
+    }
+
+    // Required for mapping
     const availableTimes = [];
-
-    
     for (let i = 0; i < 44; i++){
         let tempTime = new window.Date(currentDate.getTime() + 30 * 60000 * i); // 30 minutes in milliseconds
         const hourCheck = Number(tempTime.getHours());
@@ -42,22 +48,27 @@ function TimesGrid() {
         const timeString = `${hourString}:${minuteString} ${AMPMString}`;
         availableTimes.push(timeString);
     }
+    
         return (
             <div>
                 <Stack spacing={1}>
                     <Grid container spacing={1}>
                     {availableTimes.map((timeString)=> (
                         <Grid item xs={3} key={timeString}>
-                            {/* TODO: add an enabled and disabled time button */}
-                        <Button style={{backgroundColor: '#D6D5DA', color: '#160449', fontSize: '11px', 
-                        padding: '2px', minWidth: '0px', fontWeight: '600'}} onClick={() => {
-                                }}>
-                            {timeString}
-                        </Button>    
-                            </Grid>
+                            <TimeContext.Provider value = {{selectedTime, defineSelectedTime}}>
+                                <TimeButton timeString={timeString}></TimeButton>
+                            </TimeContext.Provider>
+                        </Grid>
                     ))}
                     </Grid>
-                    <ScheduleButton></ScheduleButton>
+                    <WeekdaySelectContext.Provider value={{selectedDay, selectedWeekday}}>
+                        <TimeContext.Provider value={{selectedTime}}>
+                            {/* TODO: schedule the time */}
+                            <ScheduleButton></ScheduleButton>
+
+                        </TimeContext.Provider>
+                    </WeekdaySelectContext.Provider>
+                    
                 </Stack>
                 
             </div>

@@ -7,12 +7,23 @@ import Button from '@mui/material/Button';
 import WeekdayButton from './WeekdayButton';
 import LaundryIcon from '../Assets/LaundryIcon.svg'
 import { Grid, Stack, Box } from '@mui/material';
-import SelectWeekday from './SelectWeekday';
+import WeekdayBox from './WeekdayBox';
 import AvailableButton from './AvailableButton';
 import TimesGrid from './TimesGrid'
+import DryerIcon from '../Assets/DefaultDryerIcon.svg'
+import BookingTabContext from './BookingTabContext';
+import React from 'react';
+
+
 function DryerAccordian() {
+  // Define the original accordian type
+  const {accordianType, defineAccordianType} = React.useContext(BookingTabContext);
+
+
     return (
-        <Accordion style={{backgroundColor: '#7CEBDE', borderRadius: '10px'}}>
+        <Accordion style={{backgroundColor: '#7CEBDE', borderRadius: '10px'}} onChange={() =>{
+          defineAccordianType('Dryer')
+        }}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1-content"
@@ -29,7 +40,15 @@ function DryerAccordian() {
           </Grid>
         </AccordionSummary>
         <AccordionDetails>
-          <SelectWeekday></SelectWeekday>
+          <Stack spacing={2}>
+            {/* <AccordianTypeContext.Provider value={{accordianType}}>
+
+            </AccordianTypeContext.Provider> */}
+            <WeekdayBox icon={DryerIcon}></WeekdayBox>
+            <WeekdayBox icon={DryerIcon}></WeekdayBox>
+            <WeekdayBox icon={DryerIcon}></WeekdayBox>
+          </Stack>
+          
         </AccordionDetails>
       </Accordion>
     );

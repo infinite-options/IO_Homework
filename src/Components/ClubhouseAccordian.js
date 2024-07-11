@@ -3,11 +3,18 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { Grid, Box } from '@mui/material';
-import SelectWeekday from './SelectWeekday';
+import WeekdayBox from './WeekdayBox';
 import AvailableButton from './AvailableButton';
+import ClubHouseIcon from '../Assets/ClubHouseIcon.svg'
+import React from 'react';
+import BookingTabContext from './BookingTabContext';
+
 function ClubhouseAccordian() {
+  const {accordianType, defineAccordianType} = React.useContext(BookingTabContext);
     return (
-        <Accordion style={{backgroundColor: '#D893F9', borderRadius: '10px'}}>
+        <Accordion style={{backgroundColor: '#D893F9', borderRadius: '10px'}} onChange={() => {
+          defineAccordianType('Clubhouse')
+        }}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1-content"
@@ -24,7 +31,7 @@ function ClubhouseAccordian() {
           </Grid>
         </AccordionSummary>
         <AccordionDetails>
-          <SelectWeekday></SelectWeekday>
+          <WeekdayBox icon={ClubHouseIcon}></WeekdayBox>
         </AccordionDetails>
       </Accordion>
     );
