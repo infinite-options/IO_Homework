@@ -1,0 +1,154 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  width: 100%;
+  max-width: 390px; 
+  margin: 0 auto; 
+  padding: 20px;
+  margin-top: 0px;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  background-color: #160449;
+  color: #F6EEE3;
+  padding: 10px 0; 
+}
+
+.header--title {
+  font-family: 'Playfair Display', serif;
+  font-size: 36px;
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-bottom: 3px;
+  font-weight: bold;
+}
+
+.header--sub {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 10px;
+  margin-top: 3px;
+  font-weight: lighter;
+}
+
+.hero--content {
+  background-color: #F2F2F2;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  margin-left: 0px;
+  margin-right: 35px;
+}
+
+.hero--title {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  color: #160449;
+  margin-bottom: 20px;
+}
+
+.bookings--info {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.booking-btn, .available--btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #160449;
+  color: white;
+  cursor: pointer;
+}
+
+.booking-btn {
+  background-color: #160449
+}
+
+.available--btn {
+  background-color: #0060B1;
+}
+
+.hero--sub {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 16px;
+  color: #A52A2A;
+  margin-bottom: 20px;
+}
+
+.washers--info, .dryers--info, .clubhouse--info, .BBQ--info {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  gap: 2px;
+  margin-top: 10px;
+  color: #160449;
+  width: 100%;
+  max-width: 300px;
+  border-radius: 10px;
+  padding: 0px;
+  border: none;
+  cursor: pointer;
+}
+
+.washers--btn, .dryers--btn, .clubhouse--btn, .BBQ--btn {
+  padding: 5px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 12px;
+  margin-top: 5px;
+
+}
+
+.washers--btn, .clubhouse--btn{
+  background-color: #76B148;
+}
+
+.dryers--btn,.BBQ--btn {
+  background-color: #A52A2A;
+}
+
+.dryers--info {
+  background-color: #A8E6CF;
+}
+.washers--info{
+  background-color: #79CBF9;
+}
+.clubhouse--info{
+  background-color: #D893F9;
+}
+.BBQ--info{
+  background-color: #F97979;
+}
+
+.footer {
+  background-color: #3D5CAC;
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 0;
+}
+
+.footer-button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.footer-button img {
+  width: 30px;
+  height: 30px; 
+}
+
