@@ -102,3 +102,25 @@ dist
 
 # TernJS port file
 .tern-port
+
+
+
+
+
+# Exclude virtual environment
+Booking_Backend/bookingbooking_env/
+
+# Exclude compiled bytecode
+Booking_Backend/__pycache__/
+Booking_Backend/app/__pycache__/
+Booking_Backend/*.pyc
+
+# Exclude environment variable files
+Booking_Backend/.env
+
+# Exclude IDE specific files
+Booking_Backend/.vscode/
+Booking_Backend/.idea/
+
+# Exclude OS-specific files
+Booking_Backend/.DS_Store
