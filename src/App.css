@@ -1,0 +1,368 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.header {
+  display: flex;
+  align-items: center;
+  background-color: #1F005C;
+  padding: 10px 20px;
+  color: white;
+  font-family: Arial, sans-serif;
+}
+
+.header--logo {
+  margin-right: 20px;
+}
+
+.header--items {
+  flex-grow: 1;
+}
+
+.header--title {
+  margin: 0;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.header--sub {
+  margin: 0;
+  font-size: 12px;
+}
+
+.header--navbar ul {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.header--navbar li {
+  margin: 0 15px;
+  display: flex;
+  align-items: center;
+}
+
+.header--navbar li::before {
+  content: '';
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+  background-size: cover;
+}
+
+.header--navbar li:nth-child(1)::before {
+  background-image: url('../src/images/Home_fill.png');
+}
+
+.header--navbar li:nth-child(2)::before {
+  background-image: url('../src/images/User_fill.png');
+}
+
+.header--navbar li:nth-child(3)::before {
+  background-image: url('../src/images/Bell_fill.png');
+}
+
+.header--navbar li:nth-child(4)::before {
+  background-image: url('../src/images/fluent_call-28-filled.svg');
+}
+
+.left-side {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+}
+
+.sidebar {
+  background-color: #e6e5ea;
+  padding: 20px;
+  margin-top: 20px;
+  width: 25%;
+  border-radius: 5px;
+  margin-left: 25px;
+  margin-bottom: 20px;
+}
+.sidebarservice--details{
+  display: flex;
+  gap:20px;
+}
+.sidebar--title {
+  color: #160449;
+  font-weight: bold;
+  text-align: center;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 35px;
+}
+.sidebar--button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.sidebar--icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 20px;
+}
+.sidebar--header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 50px;
+}
+
+
+
+.service-card {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  gap: 2px;
+  margin-top: 10px;
+  color: #160449;
+  width: 100%;
+  max-width: 300px;
+  border-radius: 10px;
+  padding: 20px;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 16px;
+}
+
+.washer {
+  background-color: #79CBF9;
+}
+.dryer {
+  background-color: #A8E6CF;
+}
+.clubhouse {
+  background-color: #D893F9;
+}
+.bbq-grill {
+  background-color: #F97979;
+}
+
+.service-card .servicecard--stack {
+  color: inherit; 
+}
+
+.service-card .rarely-used {
+  color: #FF8A00;
+}
+.service-card .moderately-used {
+  color: #D6B54F;
+}
+.service-card .frequently-used {
+  color: #76B148;
+}
+.service-card .has-issues-text {
+  color: #A52A2A;
+}
+.service-details {
+  background-color: #fff;
+  padding: 20px;
+  flex-grow: 1;
+}
+.servicecard--title {
+  font-size: 18px;
+  margin-bottom: 8px;
+  margin-top: 0px;
+}
+.servicecard--stack {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; 
+  margin-left: -20px;
+}
+.servicecard--icon {
+  padding-left: 5px;
+  width: 48px;
+  height: 48px;
+}
+.bookings--count {
+  margin-top: 5px;
+  font-size: 14px;
+  margin-bottom: -15px;
+}
+.item--utilization {
+  font-size: 15px;
+  margin-bottom: 5px;
+  font-family: 'Source Sans Pro';
+  font-weight: normal;
+}
+.servicecard--btn {
+  background-color: #CB8E8E;
+  border: none;
+  border-radius: 5px;
+}
+
+.booking-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.booking-table th,
+.booking-table td {
+  border-bottom: 1px solid #000000; 
+  padding: 8px;
+}
+
+.booking-table th {
+  
+  color: #3d5cac;
+  font-size: 13px;
+}
+
+.booking-table td {
+  
+  color: #3d5cac;
+  font-size: 13px;
+}
+ 
+
+
+
+.service-details {
+  display: flex;
+  flex-direction: column;
+  background-color: #e6e5ea;
+  padding: 20px;
+  border-radius: 10px;
+  width: 50%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.service-details th,
+.service-details td {
+    padding: 8px;
+    text-align: center;
+    overflow: hidden;
+    white-space: normal; 
+    word-wrap: break-word; 
+    max-width: 150px; 
+}
+
+.service-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  
+}
+.service--container{
+  border-radius: 5px;
+}
+
+.service-header  {
+  font-size: 24px;
+  color: #2D2D2D;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.selectRebook--btn,.closedMaintenance--btn{
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  cursor: pointer;
+}
+.selectdaystext{
+  font-size:20px;
+  color:#3D5CAC;
+}
+.selectbutton{
+  display: flex;
+  cursor: pointer;
+}
+.rebooktext{
+  font-size:20px;
+  color:#3D5CAC;
+}
+.rebookbutton{
+  display: flex;
+  cursor: pointer; 
+  gap: 6px;
+}
+.rebookicon{
+  margin-top: 12px;
+}
+.closedMaintenance--btn{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+
+
+.schedule {
+  overflow-x: auto;
+  width: 100%;
+}
+
+.schedule table {
+  width: 85%;
+  border-collapse: separate;
+  table-layout: fixed;
+  border-spacing: 0;
+  border-radius: 10px; 
+  overflow: hidden; 
+  margin-left: 90px;
+  table-layout: fixed;
+ 
+}
+
+.schedule th {
+  border: 1px solid #a2a2a4;
+  text-align: center;
+  padding: 8px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  background-color: #a2a2a4;
+  font-size: 14px;
+  color: #160449;
+}
+
+.schedule td {
+  border: 1px solid #a2a2a4;
+  text-align: center;
+  padding: 8px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  background-color: white;
+  font-size: 14px;
+  color: #2D2D2D;
+}
+.selected {
+  background-color: #160449;
+  color: white;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+
+.time-slot {
+  font-weight: bold;
+  background-color: #f0f0f0;
+  width: 60px; 
+  border: none; 
+}
+
+.schedule .available-slot {
+  background-color: #dff0d8;
+  color: #3c763d;
+}
+
+.schedule .booked-slot {
+  background-color: #f2dede;
+  color: #a94442;
+}
+
