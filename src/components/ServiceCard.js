@@ -26,16 +26,16 @@ const ServiceCard = ({ service, onClick }) => {
         switch (type) {
             case 'Washer':
                 mockBookings = [
-                    { id: 1, name: 'Robert Smith', date: '2024-07-14', fromtime: '10:00 am', totime: '11:00 am', status: 'completed' },
-                    { id: 2, name: 'Steve Albini', date: '2024-07-14', fromtime: '11:30 am', totime: '12:30 pm', status: 'completed' },
-                    { id: 3, name: 'Thom Yorke', date: '2024-07-15', fromtime: '1:00 pm', totime: '2:00 pm', status: 'incomplete' },
-                    { id: 4, name: 'Brian Willson', date: '2024-07-17', fromtime: '5:30 pm', totime: '6:30 pm', status: '-' },
-                    { id: 5, name: 'Robert Smith', date: '2024-07-14', fromtime: '11:00 am', totime: '12:00 pm', status: 'completed' }
+                    { id: 1, name: 'Robert Smith', date: '2024-07-23', fromtime: '10:00 am', totime: '11:00 am', status: 'completed' },
+                    { id: 2, name: 'Steve Albini', date: '2024-07-25', fromtime: '11:30 am', totime: '12:30 pm', status: 'completed' },
+                    { id: 3, name: 'Thom Yorke', date: '2024-07-24', fromtime: '1:00 pm', totime: '2:00 pm', status: 'incomplete' },
+                    { id: 4, name: 'Brian Willson', date: '2024-07-23', fromtime: '5:30 pm', totime: '6:30 pm', status: '-' },
+                    { id: 5, name: 'Robert Smith', date: '2024-07-22', fromtime: '12:00 pm', totime: '01:00 pm', status: 'completed' }
                 ];
                 break;
             case 'Dryer':
                 mockBookings = [
-                    { id: 3, name: 'Alice Brown', date: '2024-07-16', fromtime: '12:00 pm', totime: '1:00 pm', status: 'Completed' }
+                    { id: 3, name: 'Alice Brown', date: '2024-07-25', fromtime: '12:00 pm', totime: '1:00 pm', status: 'Completed' }
                 ];
                 break;
             case 'Clubhouse':

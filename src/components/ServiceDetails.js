@@ -22,47 +22,50 @@ const getColorForUser = (userName) => {
     return colorList[colorIndex];
 };
 
+const timeSlots = [
+    '9:00 am', '9:30 am', '10:00 am', '10:30 am', '11:00 am', '11:30 am',
+    '12:00 pm', '12:30 pm', '1:00 pm', '1:30 pm', '2:00 pm', '2:30 pm',
+    '3:00 pm', '3:30 pm', '4:00 pm', '4:30 pm', '5:00 pm', '5:30 pm',
+    '6:00 pm', '6:30 pm'
+];
+
 const ServiceDetails = ({ service, bookings }) => {
     const days = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
     const currentDayIndex = new Date().getDay();
-    const [dates, setDates] = useState([]);
-    const timeSlots = [
-        '9:00 am', '9:30 am', '10:00 am', '10:30 am', '11:00 am', '11:30 am',
-        '12:00 pm', '12:30 pm', '1:00 pm', '1:30 pm', '2:00 pm', '2:30 pm',
-        '3:00 pm', '3:30 pm', '4:00 pm', '4:30 pm', '5:00 pm', '5:30 pm',
-        '6:00 pm', '6:30 pm'
-    ];
-
-    const [selectedDayIndex, setSelectedDayIndex] = useState(-1);
+    const [selectedDayIndex, setSelectedDayIndex] = useState(currentDayIndex);
     const [bookingMap, setBookingMap] = useState({});
+    const [dates, setDates] = useState([]);
 
     useEffect(() => {
-        const generateDatesForWeek = () => {
+        const generateDatesForExtendedRange = () => {
             const startOfWeek = new Date();
-            startOfWeek.setDate(startOfWeek.getDate() - startOfWeek.getDay()); //Sunday
-            const weekDates = [];
+            startOfWeek.setDate(startOfWeek.getDate() - startOfWeek.getDay()); // Set to Sunday
+            const extendedDates = [];
 
-            for (let i = 0; i < 7; i++) {
+            for (let i = -7; i < 14; i++) { // Generate dates previous week, current week, and next week
                 const date = new Date(startOfWeek);
                 date.setDate(date.getDate() + i);
-                weekDates.push(date.toISOString().split('T')[0]);
+                extendedDates.push(date.toISOString().split('T')[0]); // ISO format
             }
 
-            return weekDates;
+            return extendedDates;
         };
 
-        setDates(generateDatesForWeek());
+        const generatedDates = generateDatesForExtendedRange();
+        setDates(generatedDates);
+    }, []);
 
+    useEffect(() => {
         const mapBookings = () => {
             const map = {};
 
             bookings.forEach(booking => {
-                const bookingDate = booking.date;
+                const bookingDate = booking.date.trim(); // Normalize date
                 const timeSlot = timeSlots.indexOf(booking.fromtime);
 
                 if (timeSlot !== -1) {
                     const dateIndex = dates.indexOf(bookingDate);
-
+                    
                     if (dateIndex !== -1) {
                         if (!map[dateIndex]) {
                             map[dateIndex] = {};
@@ -75,10 +78,10 @@ const ServiceDetails = ({ service, bookings }) => {
             setBookingMap(map);
         };
 
-        if (bookings.length > 0) {
+        if (dates.length > 0 && bookings.length > 0) {
             mapBookings();
         }
-    }, [bookings, dates]);
+    }, [dates, bookings]);
 
     const handleDayClick = (dayIndex) => {
         setSelectedDayIndex(dayIndex);
@@ -117,7 +120,7 @@ const ServiceDetails = ({ service, bookings }) => {
                                                     onClick={() => handleDayClick(dayIndex)}
                                                 >
                                                     {day} <br />
-                                                    {dates[dayIndex]}
+                                                    {dates[dayIndex + 7]} 
                                                 </div>
                                             </th>
                                         ))}
@@ -127,23 +130,23 @@ const ServiceDetails = ({ service, bookings }) => {
                                     {timeSlots.map((time, rowIndex) => (
                                         <tr key={rowIndex}>
                                             <td className="time-slot">{time}</td>
-                                            {dates.map((date, colIndex) => (
-                                                <td
-                                                    key={colIndex}
-                                                    style={{
-                                                        border: '1px solid gray',
-                                                        backgroundColor: bookingMap[colIndex] && bookingMap[colIndex][rowIndex]
-                                                            ? getColorForUser(bookingMap[colIndex][rowIndex])
-                                                            : 'transparent'
-                                                    }}
-                                                >
-                                                    {bookingMap[colIndex] && bookingMap[colIndex][rowIndex]
-                                                        ? bookingMap[colIndex][rowIndex].split(' ').map((part, idx) => (
-                                                            <div key={idx}>{part}</div>
-                                                        ))
-                                                        : ''}
-                                                </td>
-                                            ))}
+                                            {dates.slice(7, 14).map((date, colIndex) => { 
+                                                const actualDateIndex = colIndex + 7; 
+                                                const name = bookingMap[actualDateIndex] && bookingMap[actualDateIndex][rowIndex];
+
+                                                return (
+                                                    <td 
+                                                        key={colIndex} 
+                                                        style={{ 
+                                                            border: '1px solid gray',
+                                                            backgroundColor: name ? getColorForUser(name) : 'transparent',
+                                                            textAlign: 'center'
+                                                        }}
+                                                    >
+                                                        {name ? name : ''}
+                                                    </td>
+                                                );
+                                            })}
                                         </tr>
                                     ))}
                                 </tbody>
