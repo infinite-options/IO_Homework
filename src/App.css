@@ -298,6 +298,21 @@ body {
   margin-top: 10px;
   margin-bottom: 10px;
 }
+.Dialogrebookimg{
+  color:#160449;
+  width: 25px;
+  height: 25px;
+}
+.Dialogrebooktext{
+  font-size:20px;
+  color:#160449;
+  margin-top: 0px;
+  margin-left: 12px;
+}
+.dialog--title{
+  display: flex;
+  justify-content: center;
+}
 
 
 

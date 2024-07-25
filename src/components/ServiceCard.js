@@ -35,7 +35,7 @@ const ServiceCard = ({ service, onClick }) => {
                 break;
             case 'Dryer':
                 mockBookings = [
-                    { id: 3, name: 'Alice Brown', date: '2024-07-25', fromtime: '12:00 pm', totime: '1:00 pm', status: 'Completed' }
+                    { id: 3, name: 'Alice Brown', date: '2024-07-2', fromtime: '12:00 pm', totime: '1:00 pm', status: 'Completed' }
                 ];
                 break;
             case 'Clubhouse':

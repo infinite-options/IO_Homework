@@ -3,6 +3,7 @@ import '../App.css';
 import { Box } from '@mui/material';
 import SelectDaysIcon from '../images/selectdays.png';
 import RebookIcon from "../images/rebooktenants.png";
+import Dialog from './Dialog';
 
 const getColorForUser = (userName) => {
     const colorList = [
@@ -35,17 +36,18 @@ const ServiceDetails = ({ service, bookings }) => {
     const [selectedDayIndex, setSelectedDayIndex] = useState(currentDayIndex);
     const [bookingMap, setBookingMap] = useState({});
     const [dates, setDates] = useState([]);
+    const [openDialog, setOpenDialog] = useState(false);
 
     useEffect(() => {
         const generateDatesForExtendedRange = () => {
             const startOfWeek = new Date();
-            startOfWeek.setDate(startOfWeek.getDate() - startOfWeek.getDay()); // Set to Sunday
+            startOfWeek.setDate(startOfWeek.getDate() - startOfWeek.getDay()); 
             const extendedDates = [];
 
-            for (let i = -7; i < 14; i++) { // Generate dates previous week, current week, and next week
+            for (let i = -7; i < 14; i++) { 
                 const date = new Date(startOfWeek);
                 date.setDate(date.getDate() + i);
-                extendedDates.push(date.toISOString().split('T')[0]); // ISO format
+                extendedDates.push(date.toISOString().split('T')[0]); 
             }
 
             return extendedDates;
@@ -60,17 +62,23 @@ const ServiceDetails = ({ service, bookings }) => {
             const map = {};
 
             bookings.forEach(booking => {
-                const bookingDate = booking.date.trim(); // Normalize date
-                const timeSlot = timeSlots.indexOf(booking.fromtime);
+                const bookingDate = booking.date.trim();
+                const fromTimeSlot = timeSlots.indexOf(booking.fromtime);
+                const toTimeSlot = timeSlots.indexOf(booking.totime);
 
-                if (timeSlot !== -1) {
+                if (fromTimeSlot !== -1 && toTimeSlot !== -1) {
                     const dateIndex = dates.indexOf(bookingDate);
-                    
+
                     if (dateIndex !== -1) {
                         if (!map[dateIndex]) {
                             map[dateIndex] = {};
                         }
-                        map[dateIndex][timeSlot] = booking.name;
+
+                        const span = toTimeSlot - fromTimeSlot;
+                        map[dateIndex][fromTimeSlot] = {
+                            name: booking.name,
+                            span: span
+                        };
                     }
                 }
             });
@@ -87,6 +95,14 @@ const ServiceDetails = ({ service, bookings }) => {
         setSelectedDayIndex(dayIndex);
     };
 
+    const handleDialogOpen = () => {
+        setOpenDialog(true);
+    };
+
+    const handleDialogClose = () => {
+        setOpenDialog(false);
+    };
+
     return (
         <div className="service-details">
             <div className="service-header">
@@ -100,7 +116,7 @@ const ServiceDetails = ({ service, bookings }) => {
                             </button>
                             <button className='rebookbutton' style={{ background: 'white', border: 'none', borderRadius: '5px' }}>
                                 <img className='rebookicon' src={RebookIcon} alt='rebook' />
-                                <h2 className='rebooktext'>Rebook Tenants</h2>
+                                <h2 className='rebooktext' onClick={handleDialogOpen}>Rebook Tenants</h2>
                             </button>
                         </div>
                         <div className='closedMaintenance--btn'>
@@ -109,7 +125,7 @@ const ServiceDetails = ({ service, bookings }) => {
                         </div>
 
                         <div className="schedule">
-                            <table>
+                            <table style={{ tableLayout: 'fixed', width: '100%' }}>
                                 <thead>
                                     <tr>
                                         <th></th>
@@ -120,7 +136,7 @@ const ServiceDetails = ({ service, bookings }) => {
                                                     onClick={() => handleDayClick(dayIndex)}
                                                 >
                                                     {day} <br />
-                                                    {dates[dayIndex + 7]} 
+                                                    {dates[dayIndex + 7]}
                                                 </div>
                                             </th>
                                         ))}
@@ -130,20 +146,23 @@ const ServiceDetails = ({ service, bookings }) => {
                                     {timeSlots.map((time, rowIndex) => (
                                         <tr key={rowIndex}>
                                             <td className="time-slot">{time}</td>
-                                            {dates.slice(7, 14).map((date, colIndex) => { 
-                                                const actualDateIndex = colIndex + 7; 
-                                                const name = bookingMap[actualDateIndex] && bookingMap[actualDateIndex][rowIndex];
+                                            {dates.slice(7, 14).map((date, colIndex) => {
+                                                const actualDateIndex = colIndex + 7;
+                                                const booking = bookingMap[actualDateIndex] && bookingMap[actualDateIndex][rowIndex];
+                                                const span = booking ? booking.span : 1;
 
                                                 return (
-                                                    <td 
-                                                        key={colIndex} 
-                                                        style={{ 
+                                                    <td
+                                                        key={colIndex}
+                                                        rowSpan={span}
+                                                        style={{
                                                             border: '1px solid gray',
-                                                            backgroundColor: name ? getColorForUser(name) : 'transparent',
-                                                            textAlign: 'center'
+                                                            backgroundColor: booking ? getColorForUser(booking.name) : 'transparent',
+                                                            textAlign: 'center',
+                                                            verticalAlign: 'middle'
                                                         }}
                                                     >
-                                                        {name ? name : ''}
+                                                        {booking && booking.name}
                                                     </td>
                                                 );
                                             })}
@@ -155,6 +174,7 @@ const ServiceDetails = ({ service, bookings }) => {
                     </Box>
                 </div>
             </div>
+            {openDialog && <Dialog open={openDialog} onClose={handleDialogClose} bookings={bookings} />}
         </div>
     );
 };
