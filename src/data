@@ -1,0 +1,6 @@
+const washerPersonsOne = [
+        {name:'Robert Smith', start:"10 AM", end:"11 AM", status:"Complete"},
+        {name:'Steve Albini', start:"11:30 AM", end:"12:30 AM", status:"Complete"},
+        {name:'Thom Yorke', start:"1 PM", end:"2 PM", status:"Incomplete"},
+        {name:'BrianWilson', start:"5:30 PM", end:"6:30 PM", status:"-"},
+    ]
